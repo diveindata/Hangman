@@ -1,0 +1,28 @@
+solution = "hangman".lower()
+lives = 5
+guess = "_" * len(solution)
+
+
+while lives>0 and "_" in guess:
+    print("You have " + str(lives) + " lives left...")
+    
+    
+    user_input = input("Guess a character (also whitespace): ").lower()
+    
+    indices = []
+    for i in range(len(solution)):
+        if solution[i]==user_input:
+            indices += [i]
+    
+    if len(indices)==0:
+        lives = lives - 1
+    
+    
+    for index in indices:
+        guess = guess[:index] + user_input + guess[index+1:]
+    
+
+if lives==0:
+    print("Game over!")
+else:
+    print("You won!")
